@@ -1,5 +1,6 @@
 # pinger pings hosts
 
+[![Builds](https://github.com/denisbrodbeck/pinger/workflows/CI/badge.svg)](https://github.com/denisbrodbeck/pinger/actions?query=workflow%3ACI)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE-MIT)
 [![Apache2 Licensed](https://img.shields.io/badge/license-Apache2-blue.svg)](./LICENSE-APACHE)
 
