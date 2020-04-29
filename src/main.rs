@@ -54,7 +54,7 @@ fn main() {
         }
 
         // handler for each series of checks
-        let mut handle = |res: Result<Vec<Check>, ()>| match res {
+        let mut handle = |res: Result<Vec<Check>, CliError>| match res {
             Ok(checks) => {
                 // print all failed checks to stderr
                 checks.iter().filter(|c| c.error.is_some()).for_each(|c| {
@@ -72,23 +72,23 @@ fn main() {
                     Err(e) => eprintln!("failed to write csv with error: {:?}", e),
                 }
             }
-            Err(_e) => {}
+            Err(e) => eprintln!("{:?}", e)
         };
 
         // start initial ping series
-        let res: Result<Vec<Check>, ()> = check_hosts(&pinger, &hosts).await;
+        let res: Result<Vec<Check>, CliError> = check_hosts(&pinger, &hosts).await;
         handle(res);
 
         // start timer
         let mut ticker = stream::interval(opt.interval);
         while let Some(_) = ticker.next().await {
-            let res: Result<Vec<Check>, ()> = check_hosts(&pinger, &hosts).await;
+            let res: Result<Vec<Check>, CliError> = check_hosts(&pinger, &hosts).await;
             handle(res);
         }
     }));
 }
 
-async fn check_hosts(pinger: &AsyncPinger, hosts: &[&str]) -> Result<Vec<Check>, ()> {
+async fn check_hosts(pinger: &AsyncPinger, hosts: &[&str]) -> Result<Vec<Check>, CliError> {
     let mut checks: Vec<Check> = Vec::with_capacity(hosts.len());
 
     for host in hosts {
