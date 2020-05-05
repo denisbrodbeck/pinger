@@ -4,7 +4,6 @@ use async_std::{stream, task};
 
 use winping::{AsyncPinger, Buffer};
 
-extern crate chrono;
 use chrono::Utc;
 
 mod cli;
@@ -72,7 +71,7 @@ fn main() {
                     Err(e) => eprintln!("failed to write csv with error: {:?}", e),
                 }
             }
-            Err(e) => eprintln!("{:?}", e)
+            Err(e) => eprintln!("{:?}", e),
         };
 
         // start initial ping series
