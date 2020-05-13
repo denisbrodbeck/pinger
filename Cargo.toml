@@ -1,6 +1,6 @@
 [package]
 name = "pinger"
-version = "0.8.0"
+version = "0.9.0"
 authors = ["Denis Brodbeck <go.github@darker.red>"]
 repository = "https://github.com/denisbrodbeck/pinger"
 license = "MIT OR Apache-2.0"
@@ -13,4 +13,4 @@ async-std = { version = "1.5", features = ["attributes", "unstable"] }
 chrono = "0.4"
 csv = "1.1"
 structopt = { version = "0.3", default-features = false }
-winping = "0.9"
+winping = "0.10"
